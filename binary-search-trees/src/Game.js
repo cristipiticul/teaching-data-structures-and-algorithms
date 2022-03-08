@@ -55,9 +55,9 @@ export class Game extends React.Component {
         if (node.key === keyToSearch) {
             const minNumberOfTries = TreeUtils.numberOfTriesToFindKey(treeRoot, keyToSearch);
             if (minNumberOfTries === revealedNodes.size + 1) {
-                alert("Ai gasit nodul cat de rapid se poate! Felicitari!");
+                alert("You found the node as soon as possible! Congrats!");
             } else {
-                alert(`Ai gasit nodul din ${revealedNodes.size + 1} incercari (minimul era din ${minNumberOfTries} incercari). Felicitari!`)
+                alert(`You found the node by uncovering ${revealedNodes.size + 1} elements (minimum was ${minNumberOfTries} elements). Congrats!`)
             }
             this.setState({
                 gameOver: true
@@ -68,15 +68,15 @@ export class Game extends React.Component {
     nodeDoesNotExistClick = () => {
         const { treeRoot, keyToSearch, revealedNodes } = this.state;
         if (TreeUtils.findNode(treeRoot, keyToSearch)) {
-            alert("Mai cauta. Nodul e acolo undeva. Promit!");
+            alert("Keep trying. The node is there. I promise!");
         } else {
             const minNumberOfTries = TreeUtils.numberOfTriesToFindKey(treeRoot, keyToSearch);
             if (revealedNodes.size < minNumberOfTries) {
-                alert(`Ai nimerit-o! Nodul nu exista, dar tu ai ghicit asta mai repede decat trebuia (${revealedNodes.size} incercari < minimul de ${minNumberOfTries} incercari)`);
+                alert(`You got lucky! The node doesn't exist, but you guessed that sooner than you should have (${revealedNodes.size} tires < minimum of ${minNumberOfTries} tries)`);
             } else if (revealedNodes.size === minNumberOfTries) {
-                alert('Perfect! Felicitari!')
+                alert('Perfect! Congrats!')
             } else {
-                alert(`Raspunsul e corect! Unele noduri nu era necesar sa le dezvalui, dar e ok.`);
+                alert(`Correct! You didn't have to uncover some of the nodes, but it's ok.`);
             }
             this.setState({
                 gameOver: true
@@ -89,7 +89,7 @@ export class Game extends React.Component {
         return (
             <div className="game">
                 <div className="search-node">
-                    Gaseste nodul cu numarul <strong>{keyToSearch}</strong>!
+                    Find node with key <strong>{keyToSearch}</strong>!
                 </div>
                 <TreeRenderer
                     treeRoot={treeRoot}
@@ -106,7 +106,7 @@ export class Game extends React.Component {
                                 : <React.Fragment>Ai descoperit <strong>{revealedNodes.size}</strong> noduri.</React.Fragment>
                     */}
                 </div>
-                { !isFirstGame && <button type="button" className="button red" onClick={this.nodeDoesNotExistClick} disabled={gameOver}>Nodul nu exista!</button> }
+                { !isFirstGame && <button type="button" className="button red" onClick={this.nodeDoesNotExistClick} disabled={gameOver}>The node doesn't exist!</button> }
                 { gameOver && <button type="button" className="button green" onClick={this.restart}>Restart</button> }
             </div>
         )
