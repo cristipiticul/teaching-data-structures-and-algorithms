@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1588212611 source:d:\projects\cristi\sda lab backtracking\client\codeblocks\prj2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<wininet.h>
+
